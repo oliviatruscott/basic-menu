@@ -37,6 +37,7 @@ int main() {
   int num2;
   int avgNum1;     // num average variables
   int avgNum2;
+  ofstream log;    // log file variable
 
   // arrays for selection limit
   int optionNum[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -75,9 +76,18 @@ int main() {
         cout << optionNum[i] << ", " << optionName[i] << endl;
       }
 
-      cout << "FIXME: create and log to a log file" << endl; // gradeAverage provides insite to this
+      log.open("menuLog.txt"); // open log file
 
-      exit(1); // exit program
+      if (log.is_open()) { // writes to log file, if open
+        for (int i = 0; i < choiceCounter - 1; i++) { // writes user options to log file
+          log << optionNum[i] << ", " << optionName[i] << endl;
+        }
+        log << "---> exit(1)" << endl; // logs exit with error
+      } else { // error message if log file is not opened
+        cout << "Log file failed to open" << endl;
+      }
+
+      exit(1); // exit program with error
     }
 
     optionNum[choiceCounter - 1] = choice; // 
