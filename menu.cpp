@@ -38,9 +38,7 @@ int main() {
   int avgNum1;     // num average variables
   int avgNum2;
   ofstream log;    // log file variable
-
-  // arrays for selection limit
-  int optionNum[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+  int optionNum[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // arrays for selection limit
   string optionName[10] = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
   int choiceCounter = 0;
 
@@ -90,7 +88,7 @@ int main() {
       exit(1); // exit program with error
     }
 
-    optionNum[choiceCounter - 1] = choice; // 
+    optionNum[choiceCounter - 1] = choice;
 
     switch (choice) { // displays menu selection
       case 1:
@@ -295,4 +293,4 @@ int main() {
   } while (choice != 99); // end do...while loop
   
   return 0;
-}
+} // end of main
