@@ -28,29 +28,19 @@ This program demonstrates various repetition coding structures: "for", "while", 
 using namespace std;
 
 int main() {
-  int choice = 0; // Initialize user choice to force "while" loop to execute to get user's menu choice
-
-  // temp converter variables
-  int tempType;
+  int choice = 0;  // Initialize user choice to force "while" loop to execute to get user's menu choice 
+  int tempType;    // temp converter variables
   int inputTemp;
-
-  // display type variables
-  int formatType;
-
-  // grade average variables
-  string fileName;
-
-  // room area variables
-  int num1;
+  int formatType;  // display type variables
+  string fileName; // grade average variables
+  int num1;        // room area variables
   int num2;
-
-  // num average variables
-  int avgNum1;
+  int avgNum1;     // num average variables
   int avgNum2;
 
   // arrays for selection limit
-  int optionNum[10]; // initialize with 0 values
-  string optionName[10]; // initialize with spaces
+  int optionNum[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+  string optionName[10] = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
   int choiceCounter = 0;
 
   do { // loops menu and selections
@@ -62,8 +52,7 @@ int main() {
          << endl
          << endl;
 
-    // Display the '=' character 75 times below the menu title
-    cout << setfill('=') << setw(74) << "=" << endl << endl;
+    cout << setfill('=') << setw(74) << "=" << endl << endl; // Display the '=' character 75 times below the menu title
 
     // Display the list of programs assigned so far this semester
     cout << "1) Temperature Converter" << endl; // program 2-1
