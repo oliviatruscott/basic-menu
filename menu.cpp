@@ -95,7 +95,7 @@ int main() {
     switch (choice) { // displays menu selection
       case 1:
         cin.clear(); // gets rid of keyboard buffer
-        //system("cls"); // clears terminal (the menu)
+        system("cls"); // clears terminal (the menu)
         optionName[choiceCounter - 1] = "Temperature Converter"; // assigns name for case
 
         cout << "*************************************************" << endl;
@@ -121,12 +121,12 @@ int main() {
           cin >> tempChar;
         }
 
-        //system("cls");
+        system("cls");
         break; // end of case
             
       case 2:
         cin.clear();
-        //system("cls");
+        system("cls");
         optionName[choiceCounter - 1] = "Display Formats";
 
         cout << "*************************************************" << endl;
@@ -149,12 +149,12 @@ int main() {
           cin >> tempChar;
         }
 
-        //system("cls");
+        system("cls");
         break;
 
       case 3:
         cin.clear();
-        //system("cls");
+        system("cls");
         optionName[choiceCounter - 1] = "Grade Avgerage";
 
         cout << "*************************************************" << endl;
@@ -174,12 +174,12 @@ int main() {
           cin >> tempChar;
         }
 
-        //system("cls");
+        system("cls");
         break;
 
       case 4:
         cin.clear();
-        //system("cls");
+        system("cls");
         optionName[choiceCounter - 1] = "Room Area";
 
         cout << "*************************************************" << endl;
@@ -201,12 +201,12 @@ int main() {
           cin >> tempChar;
         }
 
-        //system("cls");
+        system("cls");
         break;
 
       case 5:
         cin.clear();
-        //system("cls");
+        system("cls");
         optionName[choiceCounter - 1] = "Average of Two Values";
 
         cout << "*************************************************" << endl;
@@ -228,12 +228,12 @@ int main() {
           cin >> tempChar;
         }
 
-        //system("cls");
+        system("cls");
         break;
 
       case 6:
         cin.clear();
-        //system("cls");
+        system("cls");
         optionName[choiceCounter - 1] = "Cable Bill";
 
         cout << "*************************************************" << endl;
@@ -250,12 +250,12 @@ int main() {
           cin >> tempChar;
         }
 
-        //system("cls");
+        system("cls");
         break;
 
       default: // Error message for invalid case input
         cin.clear();
-        //system("cls");
+        system("cls");
         optionName[choiceCounter - 1] = "Invalid";
 
         cout << "**************************************************" << endl;
@@ -270,7 +270,7 @@ int main() {
           cin >> tempChar;
         }
 
-        //system("cls");
+        system("cls");
         break;
 
       case 99: // quit case
@@ -280,7 +280,15 @@ int main() {
           cout << optionNum[i] << ", " << optionName[i] << endl;
         }
 
-        cout << "FIXME: log user options to log file" << endl;
+        log.open("menuLog.txt"); // open log file
+
+        if (log.is_open()) { // writes to log file, if open
+          for (int i = 0; i < choiceCounter - 1; i++) { // writes user options to log file
+            log << optionNum[i] << ", " << optionName[i] << endl;
+          }
+        } else { // error message if log file is not opened
+          cout << "Log file failed to open" << endl;
+        }
 
         break;
     } // end switch
