@@ -192,7 +192,7 @@ int main() {
         cout << "Enter second number" << endl;
         cin >> num2;
 
-        cout << "Average is: " << NumAverage(num1, num2) << endl;
+        cout << "Room area is: " << calculateArea(num1, num2) << endl;
 
         while (tempChar != 'R') {
           cout << "Type [R] to return to menu --> " << endl;
