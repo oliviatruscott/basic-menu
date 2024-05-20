@@ -187,9 +187,9 @@ int main() {
         cout << "*************************************************" << endl
             << endl;
         
-        cout << "Enter first number" << endl;
+        cout << "Enter length" << endl;
         cin >> num1;
-        cout << "Enter second number" << endl;
+        cout << "Enter width" << endl;
         cin >> num2;
 
         cout << "Room area is: " << calculateArea(num1, num2) << endl;
