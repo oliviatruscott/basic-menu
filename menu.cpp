@@ -42,6 +42,13 @@ int main() {
   string optionName[10] = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
   int choiceCounter = 0;
 
+  // struct logEntry // replacement for arrays, prob not correct placement, change old logs
+  // {
+  //   int optionNum;      // menu option number 
+  //   string optionName;  // menu option name
+  // };
+  // logEntry menuChoices[10];
+
   do { // loops menu and selections
     char tempChar = ' '; // Goes here so char does not stay R in the menu and force exit
 
