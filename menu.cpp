@@ -31,6 +31,20 @@ This program demonstrates various repetition coding structures: "for", "while", 
 
 using namespace std;
 
+RectangleShape box; 
+
+struct rectDim
+{ int length;
+  int width;
+};
+
+rectDim input;
+
+void placeCursor(HANDLE, int, int);   // Function prototypes
+void displayPrompts(HANDLE);
+void getUserInput(HANDLE, rectDim&);
+void displayData (HANDLE, rectDim);
+
 int main() {
   int choice = 0;  // Initialize user choice to force "while" loop to execute to get user's menu choice 
   int tempType;    // temp converter variables
@@ -71,6 +85,7 @@ int main() {
     cout << "4) Room Area" << endl;             // find errors 1
     cout << "5) Average of Two Values" << endl; // find errors 2
     cout << "6) Cable Bill" << endl;            // project 3
+    cout << "7) Rectangle Area" << endl;
     cout << "99) Quit" << endl;
     cout << endl << endl;
 
@@ -262,6 +277,47 @@ int main() {
         system("cls");
         break;
 
+      case 7: {
+        cin.clear();
+        system("cls");
+        optionName[choiceCounter - 1] = "Area of a Rectangle";
+
+        cout << "*************************************************" << endl;
+        cout << "**                                             **" << endl;
+        cout << "**             Area of a Rectangle             **" << endl;
+        cout << "**                                             **" << endl;
+        cout << "*************************************************" << endl
+            << endl;
+
+        // get the handle to standard output device (the console)
+        HANDLE screen = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	      displayPrompts(screen);
+	      getUserInput(screen, input);
+	      displayData (screen, input);
+
+        // call member functions to set box dimensions
+        // if the function call returns false, it means the argument sent to it was invalid and not stored
+        if (!box.setLength(input.length)) {                  // store the length
+          cout << "Invalid box length entered." << endl;
+        } else if (!box.setWidth(input.width)) {             // store the width
+          cout << "Invalid box width entered." << endl;
+        } else {                                          // both values were valid
+          // call member functions to get box information to display
+          cout << "Here is the rectangle's data:" << endl;
+          cout << "Length: " << box.getLength() << endl;
+          cout << "Width: " << box.getWidth() << endl;
+          cout << "Area: " << box.getArea() << endl;
+        }
+
+        while (tempChar != 'R') {
+          cout << "Type [R] to return to menu --> " << endl;
+          cin >> tempChar;
+        }
+
+        system("cls");
+        break; }
+
       default: // Error message for invalid case input
         cin.clear();
         system("cls");
@@ -305,3 +361,49 @@ int main() {
   
   return 0;
 } // end of main
+
+/******************************************************
+ *                    placeCursor                     *
+ ******************************************************/
+void placeCursor(HANDLE screen, int row, int col)
+{                       // COORD is a defined C++ structure that
+  COORD position;       // holds a pair of X and Y coordinates
+	position.Y = row;
+	position.X = col;
+  SetConsoleCursorPosition(screen, position);
+}
+
+/******************************************************
+ *                   displayPrompts                   *
+ ******************************************************/
+void displayPrompts(HANDLE screen)
+{
+	placeCursor(screen, 13, 25);
+	cout << "******* Data Entry Form *******" << endl;
+	placeCursor(screen, 15, 25);
+	cout << "Length: " << endl;
+	placeCursor(screen, 17, 25);
+	cout << "Width : " << endl;
+}
+
+/******************************************************
+ *                    getUserInput                    *
+ ******************************************************/
+void getUserInput(HANDLE screen, rectDim &input)
+{
+	placeCursor(screen, 15, 33);
+	cin >> input.length;
+	placeCursor(screen, 17, 33);
+	cin >> input.width;
+}
+
+/******************************************************
+ *                     displayData                    *
+ ******************************************************/
+void displayData(HANDLE screen, rectDim input)
+{
+	placeCursor(screen, 20, 0);
+	cout << "Here is the data you entered.\n";
+	cout << "Length  : " << input.length   << endl;
+	cout << "Width   : " << input.width    << endl;
+}
