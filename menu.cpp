@@ -24,6 +24,10 @@ This program demonstrates various repetition coding structures: "for", "while", 
 #include "functions\calculateAreaAlduenda.cpp" // room area
 #include "functions\NumAverageDickson.cpp"     // average of two numbers
 #include "functions\cableBillTruscott.cpp"     // cable bill function
+#include "functions\RectangleShape.h"
+#include "functions\RectangleShape.cpp"        // rectangle shape function, case 7
+
+#include "windows.h"
 
 using namespace std;
 
