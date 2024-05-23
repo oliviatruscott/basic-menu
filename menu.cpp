@@ -25,7 +25,7 @@ This program demonstrates various repetition coding structures: "for", "while", 
 #include "functions\NumAverageDickson.cpp"     // average of two numbers
 #include "functions\cableBillTruscott.cpp"     // cable bill function
 #include "functions\RectangleShape.h"
-#include "functions\RectangleShape.cpp"        // rectangle shape function, case 7
+#include "functions\RectangleShape.cpp"        // included due to using vscode
 
 #include "windows.h"
 
@@ -33,17 +33,21 @@ using namespace std;
 
 RectangleShape box; 
 
-struct rectDim
-{ int length;
+struct rectDim { 
+  int length;
   int width;
 };
-
 rectDim input;
 
 void placeCursor(HANDLE, int, int);   // Function prototypes
 void displayPrompts(HANDLE);
 void getUserInput(HANDLE, rectDim&);
 void displayData (HANDLE, rectDim);
+
+struct logEntry {
+  int optionNum;      // menu option number 
+  string optionName;  // menu option name
+};
 
 int main() {
   int choice = 0;  // Initialize user choice to force "while" loop to execute to get user's menu choice 
@@ -55,17 +59,20 @@ int main() {
   int num2;
   int avgNum1;     // num average variables
   int avgNum2;
-  ofstream log;    // log file variable
-  int optionNum[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // arrays for selection limit
-  string optionName[10] = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+  ofstream log;    // define output file variable
   int choiceCounter = 0;
 
-  // struct logEntry // replacement for arrays, prob not correct placement, change old logs
-  // {
-  //   int optionNum;      // menu option number 
-  //   string optionName;  // menu option name
-  // };
-  // logEntry menuChoices[10];
+  logEntry menuChoices[10];
+
+  // initialize menuChoices array
+  menuChoices[0] = {1, "Temperature Converter"};
+  menuChoices[1] = {2, "Display Formats"};
+  menuChoices[2] = {3, "Grade Average"};
+  menuChoices[3] = {4, "Room Area"};
+  menuChoices[4] = {5, "Average of Two Values"};
+  menuChoices[5] = {6, "Cable Bill"};
+  menuChoices[6] = {7, "Rectangle Area"};
+  menuChoices[9] = {99, "Exit"};
 
   do { // loops menu and selections
     char tempChar = ' '; // Goes here so char does not stay R in the menu and force exit
@@ -97,14 +104,14 @@ int main() {
       cout << "You have reached the maximum number of selections." << endl;
 
       for (int i = 0; i < choiceCounter - 1; i++) { // display user options
-        cout << optionNum[i] << ", " << optionName[i] << endl;
+        cout << menuChoices[i].optionNum << ", " << menuChoices[i].optionName << endl;
       }
 
       log.open("menuLog.txt"); // open log file
 
       if (log.is_open()) { // writes to log file, if open
         for (int i = 0; i < choiceCounter - 1; i++) { // writes user options to log file
-          log << optionNum[i] << ", " << optionName[i] << endl;
+          log << menuChoices[i].optionNum << ", " << menuChoices[i].optionName << endl;
         }
         log << "---> exit(1)" << endl; // logs exit with error
       } else { // error message if log file is not opened
@@ -114,13 +121,10 @@ int main() {
       exit(1); // exit program with error
     }
 
-    optionNum[choiceCounter - 1] = choice;
-
     switch (choice) { // displays menu selection
       case 1:
         cin.clear(); // gets rid of keyboard buffer
         system("cls"); // clears terminal (the menu)
-        optionName[choiceCounter - 1] = "Temperature Converter"; // assigns name for case
 
         cout << "*************************************************" << endl;
         cout << "**                                             **" << endl;
@@ -151,7 +155,6 @@ int main() {
       case 2:
         cin.clear();
         system("cls");
-        optionName[choiceCounter - 1] = "Display Formats";
 
         cout << "*************************************************" << endl;
         cout << "**                                             **" << endl;
@@ -179,7 +182,6 @@ int main() {
       case 3:
         cin.clear();
         system("cls");
-        optionName[choiceCounter - 1] = "Grade Avgerage";
 
         cout << "*************************************************" << endl;
         cout << "**                                             **" << endl;
@@ -204,7 +206,6 @@ int main() {
       case 4:
         cin.clear();
         system("cls");
-        optionName[choiceCounter - 1] = "Room Area";
 
         cout << "*************************************************" << endl;
         cout << "**                                             **" << endl;
@@ -231,7 +232,6 @@ int main() {
       case 5:
         cin.clear();
         system("cls");
-        optionName[choiceCounter - 1] = "Average of Two Values";
 
         cout << "*************************************************" << endl;
         cout << "**                                             **" << endl;
@@ -258,7 +258,6 @@ int main() {
       case 6:
         cin.clear();
         system("cls");
-        optionName[choiceCounter - 1] = "Cable Bill";
 
         cout << "*************************************************" << endl;
         cout << "**                                             **" << endl;
@@ -280,7 +279,6 @@ int main() {
       case 7: {
         cin.clear();
         system("cls");
-        optionName[choiceCounter - 1] = "Area of a Rectangle";
 
         cout << "*************************************************" << endl;
         cout << "**                                             **" << endl;
@@ -321,7 +319,6 @@ int main() {
       default: // Error message for invalid case input
         cin.clear();
         system("cls");
-        optionName[choiceCounter - 1] = "Invalid";
 
         cout << "**************************************************" << endl;
         cout << "**                                              **" << endl;
@@ -339,17 +336,15 @@ int main() {
         break;
 
       case 99: // quit case
-        optionName[choiceCounter - 1] = "Exit";
-
-        for (int i = 0; i <choiceCounter; i++) {
-          cout << optionNum[i] << ", " << optionName[i] << endl;
+        for (int i = 0; i < choiceCounter; i++) {
+          cout << menuChoices[i].optionNum << ", " << menuChoices[i].optionName << endl;
         }
 
         log.open("menuLog.txt"); // open log file
 
         if (log.is_open()) { // writes to log file, if open
-          for (int i = 0; i < choiceCounter - 1; i++) { // writes user options to log file
-            log << optionNum[i] << ", " << optionName[i] << endl;
+          for (int i = 0; i < 10; i++) { // writes user options to log file
+            log << menuChoices[i].optionNum << ", " << menuChoices[i].optionName << endl;
           }
         } else { // error message if log file is not opened
           cout << "Log file failed to open" << endl;
