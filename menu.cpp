@@ -98,7 +98,6 @@ int main() {
 
     cout << "Enter a menu option --> "; // Prompt for menu choice to trigger switch
     cin >> choice;
-    choiceCounter++; // adds to choice counter
 
     if (choiceCounter > 10) { // checks if choice counter has hit limit of 10
       cout << "You have reached the maximum number of selections." << endl;
@@ -149,6 +148,9 @@ int main() {
           cin >> tempChar;
         }
 
+        menuChoices[choiceCounter] = {1, "Temperature Converter"};
+        choiceCounter++; // adds to choice counter
+
         system("cls");
         break; // end of case
             
@@ -176,6 +178,9 @@ int main() {
           cin >> tempChar;
         }
 
+        menuChoices[choiceCounter] = {2, "Display Formats"};
+        choiceCounter++;
+
         system("cls");
         break;
 
@@ -199,6 +204,9 @@ int main() {
           cout << "Type [R] to return to menu --> " << endl;
           cin >> tempChar;
         }
+
+        menuChoices[choiceCounter] = {3, "Grade Average"};
+        choiceCounter++;
 
         system("cls");
         break;
@@ -226,6 +234,9 @@ int main() {
           cin >> tempChar;
         }
 
+        menuChoices[choiceCounter] = {4, "Room Area"};
+        choiceCounter++;
+
         system("cls");
         break;
 
@@ -252,6 +263,9 @@ int main() {
           cin >> tempChar;
         }
 
+        menuChoices[choiceCounter] = {5, "Average Two Values"};
+        choiceCounter++;
+
         system("cls");
         break;
 
@@ -272,6 +286,9 @@ int main() {
           cout << "Type [R] to return to menu --> " << endl;
           cin >> tempChar;
         }
+
+        menuChoices[choiceCounter] = {6, "Cable Bill"};
+        choiceCounter++;
 
         system("cls");
         break;
@@ -312,6 +329,9 @@ int main() {
           cout << "Type [R] to return to menu --> " << endl;
           cin >> tempChar;
         }
+
+        menuChoices[choiceCounter] = {7, "Area of a Rectangle"};
+        choiceCounter++;
 
         system("cls");
         break; }
